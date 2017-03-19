@@ -4,57 +4,22 @@ namespace Stopwatch
 {
     public class Stopwatch
     {
-        public DateTime StartTime { get; private set; }
-        public DateTime StopTime { get; private set; }
+        public DateTime StartTime { get; private set; } = DateTime.Now;
+        public DateTime StopTime { get; private set; } = DateTime.Now;
         public TimeSpan Duration { get; private set; } = new TimeSpan(0, 0, 0);
         public bool Running { get; private set; } = false;
         public string State { get; private set; } = "Stopped";
         private TimeSpan _zeroTime = new TimeSpan(0, 0, 0);
-        //private TimeSpan _pauseTime = new TimeSpan(0, 0, 0);
+        private DateTime _pauseTime = DateTime.Now;
 
 
         public Stopwatch() { }
         
         private void _duration()
         {
-            /*if (Duration > _zeroTime & State == "Paused")
-            {
-                _pauseTime += StartTime - StopTime;
-            }*/
-
-            if (StartTime <= StopTime)
-            {
-                if (State == "Paused")
-                {
-                    Duration += StopTime - StartTime;// - _pauseTime;
-                }
-                else
-                {
-                    Duration = StopTime - StartTime;
-                }
-            }
+            Duration += StopTime - StartTime;
         }
-
-        private void _duration(DateTime startTime, DateTime stopTime)
-        {
-            /*if (Duration > _zeroTime & State == "Paused")
-            {
-                _pauseTime += StartTime - StopTime;
-            }*/
-
-            if (startTime <= stopTime)
-            {
-                if (State == "Paused")
-                {
-                    Duration += stopTime - startTime;// - _pauseTime;
-                }
-                else
-                {
-                    Duration = stopTime - startTime;
-                }
-            }
-        }
-
+        
         public void Start()
         {
             if (!Running)
@@ -67,7 +32,6 @@ namespace Stopwatch
             {
                 throw new InvalidOperationException("Invalid input! Stopwatch is currently running.");
             }
-            //_duration();
         }
 
         public void Stop()
@@ -87,15 +51,16 @@ namespace Stopwatch
 
         public void TimeCheck()
         {
-            //StopTime = DateTime.Now;
-            if (State == "Running")
+            if (Running)
             {
-                _duration(StartTime, DateTime.Now);
+                StopTime = DateTime.Now;
+                _duration();
+                StartTime = DateTime.Now;
             }
-            else
+            /*else
             {
                 throw new InvalidOperationException("Invalid input! Stopwatch is not currently running.");
-            }
+            }*/
         }
 
         public void ResetStopwatch()
@@ -103,7 +68,6 @@ namespace Stopwatch
             Running = false;
             State = "Stopped";
             Duration = _zeroTime;
-            //_pauseTime = _zeroTime;
         }
 
     }
