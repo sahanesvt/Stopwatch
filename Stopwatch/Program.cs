@@ -66,40 +66,12 @@ namespace Stopwatch
         static void Main(string[] args)
         {
             var stopwatch = new Stopwatch();
-            string menu = "To Start Stopwatch, Press: 1\nTo Stop  Stopwatch, Press: 2\nFor Current Stopwatch Time, Press: 3\nTo Reset Stopwatch, Press: 4\nTo Exit  Stopwatch, Press: 5";
+            string menu = "To Start Stopwatch, Press: 1\nTo Stop  Stopwatch, Press: 2\nTo Check Stopwatch, Press: 3\nTo Reset Stopwatch, Press: 4\nTo Exit  Stopwatch, Press: 5";
             string display = "Stopwatch State is: {0}, Stopwatch time is: {1}\n";
             string inputError = "Invalid input! Please input valid number.";
             int response = 0;
 
             recursive(stopwatch, menu, display, inputError, response);
-            /*Console.WriteLine(display + menu, stopwatch.State, stopwatch.Duration);
-            if (int.TryParse(Console.ReadLine(), out response))
-            {
-                //else { Console.WriteLine(inputError); }
-
-                while (response != 5)
-                {
-                    menuSwitch(response, stopwatch, inputError);
-                    if (response == 5)
-                    {
-                        Environment.Exit(0);
-                    }
-                    if (response != 0)
-                    {
-                        Console.WriteLine(display + menu, stopwatch.State, stopwatch.Duration);
-                        if (int.TryParse(Console.ReadLine(), out response)) { }
-                    }
-                    else
-                    {
-                        Console.WriteLine(inputError);
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine(inputError);
-                menuSwitch(response, stopwatch, inputError);
-            }*/
         }
 
     }

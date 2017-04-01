@@ -57,10 +57,6 @@ namespace Stopwatch
                 _duration();
                 StartTime = DateTime.Now;
             }
-            /*else
-            {
-                throw new InvalidOperationException("Invalid input! Stopwatch is not currently running.");
-            }*/
         }
 
         public void ResetStopwatch()
